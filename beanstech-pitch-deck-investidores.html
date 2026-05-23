@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BeansTech — Pitch Deck para Investidores</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg-dark: #0f172a;
+    --bg-card: #1e293b;
+    --bg-card-hover: #334155;
+    --text-primary: #f1f5f9;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --accent-blue: #0ea5e9;
+    --accent-purple: #8b5cf6;
+    --accent-green: #22c55e;
+    --accent-orange: #f97316;
+    --accent-pink: #ec4899;
+    --accent-teal: #14b8a6;
+    --gradient-main: linear-gradient(135deg, #0ea5e9, #8b5cf6);
+    --gradient-green: linear-gradient(135deg, #22c55e, #14b8a6);
+    --gradient-fire: linear-gradient(135deg, #f97316, #ef4444);
+    --border: #334155;
+  }
+
+  html { font-size: 16px; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg-dark);
+    color: var(--text-primary);
+    line-height: 1.6;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* ===== SLIDE SYSTEM ===== */
+  .slide {
+    width: 100%;
+    min-height: 100vh;
+    padding: 60px 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    page-break-after: always;
+    break-after: page;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .slide::before {
+    content: '';
+    position: absolute;
+    top: -200px;
+    right: -200px;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(14,165,233,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .slide-number {
+    position: absolute;
+    bottom: 30px;
+    right: 40px;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .slide-logo {
+    position: absolute;
+    bottom: 30px;
+    left: 40px;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+  }
+
+  /* ===== TYPOGRAPHY ===== */
+  h1 {
+    font-size: 3.2rem;
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: 20px;
+  }
+
+  h2 {
+    font-size: 2.4rem;
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+
+  .subtitle {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    font-weight: 400;
+    max-width: 700px;
+    line-height: 1.5;
+  }
+
+  .gradient-text {
+    background: var(--gradient-main);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .highlight { color: var(--accent-blue); }
+  .highlight-green { color: var(--accent-green); }
+  .highlight-purple { color: var(--accent-purple); }
+  .highlight-orange { color: var(--accent-orange); }
+
+  /* ===== GRID SYSTEM ===== */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
+  .grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 20px; }
+  .grid-5 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 1fr; gap: 16px; }
+
+  /* ===== CARDS ===== */
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+  }
+
+  .card-sm {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+  }
+
+  .card-accent {
+    border-left: 4px solid var(--accent-blue);
+  }
+
+  .stat-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    text-align: center;
+  }
+
+  .stat-number {
+    font-size: 2.8rem;
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .stat-label {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+  }
+
+  /* ===== TAGS ===== */
+  .tag {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 100px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .tag-blue { background: rgba(14,165,233,0.15); color: #38bdf8; }
+  .tag-green { background: rgba(34,197,94,0.15); color: #4ade80; }
+  .tag-purple { background: rgba(139,92,246,0.15); color: #a78bfa; }
+  .tag-orange { background: rgba(249,115,22,0.15); color: #fb923c; }
+  .tag-pink { background: rgba(236,72,153,0.15); color: #f472b6; }
+  .tag-teal { background: rgba(20,184,166,0.15); color: #2dd4bf; }
+
+  /* ===== TABLE ===== */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+  }
+
+  th {
+    text-align: left;
+    padding: 12px 16px;
+    background: rgba(14,165,233,0.08);
+    color: var(--accent-blue);
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid var(--border);
+  }
+
+  td {
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(51,65,85,0.5);
+    color: var(--text-secondary);
+  }
+
+  tr:hover td { background: rgba(14,165,233,0.03); }
+
+  /* ===== PROGRESS BAR ===== */
+  .progress-bar {
+    height: 8px;
+    background: rgba(51,65,85,0.5);
+    border-radius: 100px;
+    overflow: hidden;
+    margin-top: 8px;
+  }
+
+  .progress-fill {
+    height: 100%;
+    border-radius: 100px;
+    background: var(--gradient-main);
+  }
+
+  /* ===== LISTS ===== */
+  .check-list { list-style: none; }
+  .check-list li {
+    padding: 6px 0;
+    padding-left: 28px;
+    position: relative;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+  }
+  .check-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--accent-green);
+    font-weight: 700;
+  }
+
+  /* ===== DIVIDER ===== */
+  .divider {
+    width: 80px;
+    height: 4px;
+    background: var(--gradient-main);
+    border-radius: 100px;
+    margin: 20px 0;
+  }
+
+  /* ===== MISC ===== */
+  .flex-between { display: flex; justify-content: space-between; align-items: center; }
+  .flex-center { display: flex; align-items: center; gap: 12px; }
+  .mt-8 { margin-top: 8px; }
+  .mt-16 { margin-top: 16px; }
+  .mt-24 { margin-top: 24px; }
+  .mt-32 { margin-top: 32px; }
+  .mt-48 { margin-top: 48px; }
+  .mb-16 { margin-bottom: 16px; }
+  .mb-24 { margin-bottom: 24px; }
+  .mb-32 { margin-bottom: 32px; }
+  .text-sm { font-size: 0.85rem; }
+  .text-xs { font-size: 0.75rem; }
+  .text-right { text-align: right; }
+  .font-bold { font-weight: 700; }
+  .font-medium { font-weight: 500; }
+  .opacity-60 { color: var(--text-muted); }
+
+  .icon-circle {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    flex-shrink: 0;
+  }
+
+  .pipeline-arrow {
+    text-align: center;
+    font-size: 2rem;
+    color: var(--text-muted);
+    line-height: 1;
+  }
+
+  /* ===== PRINT ===== */
+  @media print {
+    .slide { min-height: 100vh; padding: 40px 50px; }
+    body { background: var(--bg-dark) !important; }
+    .card, .card-sm, .stat-card { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- SLIDE 1: CAPA -->
+<!-- ============================================================ -->
+<div class="slide" style="justify-content: center; align-items: center; text-align: center;">
+  <div style="margin-bottom: 40px;">
+    <div style="font-size: 4rem; font-weight: 900; letter-spacing: -0.04em;">
+      <span class="gradient-text">Beans</span><span style="color: var(--text-primary);">Tech</span>
+    </div>
+    <div style="font-size: 1rem; color: var(--text-muted); font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; margin-top: 8px;">
+      Construindo o Futuro com IA e Cloud
+    </div>
+  </div>
+
+  <h1 style="font-size: 2.6rem; max-width: 800px; margin: 0 auto 24px;">
+    23 plataformas SaaS verticais.<br>
+    Um único monorepo.<br>
+    <span class="gradient-text">100% Google Cloud.</span>
+  </h1>
+
+  <p class="subtitle" style="margin: 0 auto 48px; text-align: center;">
+    Holding de tecnologia que aplica IA generativa em mercados verticais brasileiros — do Direito à Odontologia, do Imobiliário ao Vinho.
+  </p>
+
+  <div style="display: flex; gap: 32px; justify-content: center;">
+    <div class="stat-card" style="min-width: 140px;">
+      <div class="stat-number highlight">23</div>
+      <div class="stat-label">Plataformas</div>
+    </div>
+    <div class="stat-card" style="min-width: 140px;">
+      <div class="stat-number highlight-green">6</div>
+      <div class="stat-label">Verticais</div>
+    </div>
+    <div class="stat-card" style="min-width: 140px;">
+      <div class="stat-number highlight-purple">30+</div>
+      <div class="stat-label">Pacotes Compartilhados</div>
+    </div>
+    <div class="stat-card" style="min-width: 140px;">
+      <div class="stat-number highlight-orange">12</div>
+      <div class="stat-label">Schemas de Banco</div>
+    </div>
+  </div>
+
+  <div style="margin-top: 60px; color: var(--text-muted); font-size: 0.85rem;">
+    Pitch Deck Confidencial — Março 2026
+  </div>
+  <span class="slide-number">01</span>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 2: O PROBLEMA -->
+<!-- ============================================================ -->
+<div class="slide">
+  <span class="tag tag-orange mb-16">O Problema</span>
+  <h2>Profissionais brasileiros perdem <span class="highlight-orange">horas por dia</span> em tarefas que a IA resolve em segundos</h2>
+  <div class="divider"></div>
+
+  <div class="grid-3 mt-32">
+    <div class="card">
+      <div class="icon-circle" style="background: rgba(139,92,246,0.15);">&#9878;</div>
+      <h3 class="mt-16">Advocacia</h3>
+      <p class="text-sm" style="color: var(--text-secondary);">Advogados gastam <strong style="color: var(--text-primary);">4-6 horas</strong> redigindo uma petição inicial. Com IA, leva <strong style="color: var(--accent-green);">15 minutos</strong>. Mais de 1,4 milhão de advogados no Brasil sem acesso a ferramentas modernas.</p>
+    </div>
+
+    <div class="card">
+      <div class="icon-circle" style="background: rgba(14,165,233,0.15);">&#127968;</div>
+      <h3 class="mt-16">Mercado Imobiliário</h3>
+      <p class="text-sm" style="color: var(--text-secondary);">Corretores e incorporadoras trabalham com <strong style="color: var(--text-primary);">planilhas Excel</strong> e WhatsApp. O mercado imobiliário brasileiro movimenta R$800B/ano com ferramentas da década passada.</p>
+    </div>
+
+    <div class="card">
+      <div class="icon-circle" style="background: rgba(20,184,166,0.15);">&#129463;</div>
+      <h3 class="mt-16">Odontologia</h3>
+      <p class="text-sm" style="color: var(--text-secondary);">Nos EUA, Overjet captou <strong style="color: var(--text-primary);">US$100M+</strong> para IA dental. No Brasil, com 350 mil dentistas: <strong style="color: var(--accent-orange);">zero concorrentes IA</strong>.</p>
+    </div>
+  </div>
+
+  <div class="card mt-32" style="border-left: 4px solid var(--accent-orange); background: rgba(249,115,22,0.05);">
+    <p style="font-size: 1.1rem; color: var(--text-secondary);">
+      <strong style="color: var(--text-primary);">A oportunidade:</strong> O Brasil tem mercados verticais gigantes (LegalTech R$5B, PropTech R$15B, DentalTech R$2B) com adoção de IA praticamente inexistente. Quem chegar primeiro com produto excelente domina.
+    </p>
+  </div>
+
+  <span class="slide-logo">BEANSTECH</span>
+  <span class="slide-number">02</span>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 3: A SOLUÇÃO -->
+<!-- ============================================================ -->
+<div class="slide">
+  <span class="tag tag-blue mb-16">A Solução</span>
+  <h2>Uma holding tech que cria <span class="gradient-text">SaaS vertical com IA</span> para cada mercado</h2>
+  <div class="divider"></div>
+
+  <div class="grid-2 mt-32">
+    <div>
+      <h3 style="color: var(--text-secondary); font-weight: 500; font-size: 1.1rem; margin-bottom: 24px;">Em vez de construir 23 empresas separadas, construímos:</h3>
+
+      <div class="card-sm mb-16 flex-center">
+        <div class="icon-circle" style="background: rgba(14,165,233,0.15); font-size: 1.2rem;">&#128640;</div>
+        <div>
+          <div class="font-bold">1 Monorepo</div>
+          <div class="text-sm" style="color: var(--text-secondary);">Turborepo + pnpm — 30+ pacotes compartilhados entre todas as plataformas</div>
+        </div>
+      </div>
+
+      <div class="card-sm mb-16 flex-center">
+        <div class="icon-circle" style="background: rgba(139,92,246,0.15); font-size: 1.2rem;">&#9729;&#65039;</div>
+        <div>
+          <div class="font-bold">1 Infraestrutura</div>
+          <div class="text-sm" style="color: var(--text-secondary);">100% Google Cloud — Cloud Run, Cloud SQL, Redis, CDN, Vertex AI</div>
+        </div>
+      </div>
+
+      <div class="card-sm mb-16 flex-center">
+        <div class="icon-circle" style="background: rgba(34,197,94,0.15); font-size: 1.2rem;">&#129302;</div>
+        <div>
+          <div class="font-bold">1 Stack de IA</div>
+          <div class="text-sm" style="color: var(--text-secondary);">Multi-modelo: Gemini 3.1 Pro, Claude Opus 4.6 — o melhor modelo para cada tarefa</div>
+        </div>
+      </div>
+
+      <div class="card-sm flex-center">
+        <div class="icon-circle" style="background: rgba(249,115,22,0.15); font-size: 1.2rem;">&#128176;</div>
+        <div>
+          <div class="font-bold">23 Fontes de Receita</div>
+          <div class="text-sm" style="color: var(--text-secondary);">10 modelos de monetização diferentes: assinatura, créditos, comissão, percentual, cursos</div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <h3 style="color: var(--text-secondary); font-weight: 500; font-size: 1.1rem; margin-bottom: 24px;">Isso nos dá vantagens únicas:</h3>
+
+      <div class="card" style="background: rgba(14,165,233,0.05); border-color: rgba(14,165,233,0.2);">
+        <div style="font-size: 3rem; font-weight: 900; color: var(--accent-blue); margin-bottom: 8px;">10x</div>
+        <div class="font-bold mb-16">Mais rápido para lançar nova plataforma</div>
+        <p class="text-sm" style="color: var(--text-secondary);">Auth, pagamentos, CMS, analytics, email, SEO — tudo já está pronto nos pacotes compartilhados. Uma nova vertical precisa apenas de: schema do banco + componentes do dashboard + landing page.</p>
+      </div>
+
+      <div class="card mt-16" style="background: rgba(34,197,94,0.05); border-color: rgba(34,197,94,0.2);">
+        <div style="font-size: 3rem; font-weight: 900; color: var(--accent-green); margin-bottom: 8px;">1/23</div>
+        <div class="font-bold mb-16">Do custo de infraestrutura por plataforma</div>
+        <p class="text-sm" style="color: var(--text-secondary);">Load balancer, SSL, Redis, VPC, CI/CD — compartilhados entre todas as plataformas. O custo marginal de uma nova plataforma é próximo de zero.</p>
+      </div>
+    </div>
+  </div>
+
+  <span class="slide-logo">BEANSTECH</span>
+  <span class="slide-number">03</span>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 4: PORTFÓLIO DE PLATAFORMAS -->
+<!-- ============================================================ -->
+<div class="slide">
+  <span class="tag tag-purple mb-16">Portfólio</span>
+  <h2>23 plataformas em <span class="highlight-purple">6 verticais</span></h2>
+  <div class="divider"></div>
+
+  <div class="grid-3 mt-24" style="gap: 16px;">
+    <!-- LEGALTECH -->
+    <div class="card-sm" style="border-top: 3px solid #8b5cf6;">
+      <div class="flex-between mb-16">
+        <span class="tag tag-purple">LegalTech</span>
+        <span class="text-xs opacity-60">6 plataformas</span>
+      </div>
+      <div style="font-size: 0.85rem; color: var(--text-secondary); line-height: 2;">
+        <div><strong style="color: var(--text-primary);">E-Arbitragem.AI</strong> — Arbitragem online</div>
+        <div><strong style="color: var(--text-primary);">E-Arbitragem.BR</strong> — Cursos de arbitragem</div>
+        <div><strong style="color: var(--text-primary);">Advogando.AI</strong> — Geração de peças com IA</div>
+        <div><strong style="color: var(--text-primary);">Portal do Advogado</strong> — Gestão de escritório</div>
+        <div><strong style="color: var(--text-primary);">LegalSuite</strong> — Software jurídico + IA</div>
+        <div><strong style="color: var(--text-primary);">Minuta.Tech</strong> — Minutas p/ setor público</div>
+      </div>
+    </div>
+
+    <!-- PROPTECH -->
+    <div class="card-sm" style="border-top: 3px solid #22c55e;">
+      <div class="flex-between mb-16">
+        <span class="tag tag-green">PropTech</span>
+        <span class="text-xs opacity-60">8 plataformas</span>
+      </div>
+      <div style="font-size: 0.85rem; color: var(--text-secondary); line-height: 2;">
+        <div><strong style="color: var(--text-primary);">PropTechBR</strong> — Hub imobiliário</div>
+        <div><strong style="color: var(--text-primary);">IncorporaTech</strong> — Lançamentos imobiliários</div>
+        <div><strong style="color: var(--text-primary);">ImobTechBR</strong> — Imóveis comerciais SP</div>
+        <div><strong style="color: var(--text-primary);">Gestão ImobTechBR</strong> — Administração</div>
+        <div><strong style="color: var(--text-primary);">Pais do Imóvel</strong> — Estrangeiros (PT/EN)</div>
+        <div><strong style="color: var(--text-primary);">SP Living</strong> — Luxo em São Paulo</div>
+        <div><strong style="color: var(--text-primary);">Melhor Endereço</strong> — Inteligência imob.</div>
+        <div><strong style="color: var(--text-primary);">Futuro Tokenizado</strong> — Tokenização</div>
+      </div>
+    </div>
+
+    <!-- FINTECH + AI + WINE + MEDIA -->
+    <div style="display: flex; flex-direction: column; gap: 16px;">
+      <div class="card-sm" style="border-top: 3px solid #22c55e;">
+        <div class="flex-between mb-16">
+          <span class="tag tag-green">FinTech</span>
+          <span class="text-xs opacity-60">2</span>
+        </div>
+        <div style="font-size: 0.85rem; color: var(--text-secondary); line-height: 2;">
+          <div><strong style="color: var(--text-primary);">Moneyp</strong> — IA financeira pessoal</div>
+          <div><strong style="color: var(--text-primary);">DealFlowBR</strong> — M&A e Valuation</div>
+        </div>
+      </div>
+
+      <div class="card-sm" style="border-top: 3px solid #0ea5e9;">
+        <div class="flex-between mb-16">
+          <span class="tag tag-blue">IA/HealthTech</span>
+          <span class="text-xs opacity-60">3</span>
+        </div>
+        <div style="font-size: 0.85rem; color: var(--text-secondary); line-height: 2;">
+          <div><strong style="color: var(--text-primary);">Portal do Dentista</strong> — IA odontológica</div>
+          <div><strong style="color: var(--text-primary);">ConstrutechBR</strong> — IA na construção</div>
+          <div><strong style="color: var(--text-primary);">GestãoTechBR</strong> — Gestão com IA</div>
+        </div>
+      </div>
+
+      <div class="card-sm" style="border-top: 3px solid #ec4899;">
+        <div class="flex-between mb-16">
+          <span class="tag tag-pink">WineTech + Mídia</span>
+          <span class="text-xs opacity-60">3</span>
+        </div>
+        <div style="font-size: 0.85rem; color: var(--text-secondary); line-height: 2;">
+          <div><strong style="color: var(--text-primary);">Seu Sommelier Digital</strong> — IA para vinhos</div>
+          <div><strong style="color: var(--text-primary);">VinoTech</strong> — Carta de vinhos B2B</div>
+          <div><strong style="color: var(--text-primary);">O Melhor da IA</strong> — Portal de IA</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <span class="slide-logo">BEANSTECH</span>
+  <span class="slide-number">04</span>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 5: MODELO DE NEGÓCIO -->
+<!-- ============================================================ -->
+<div class="slide">
+  <span class="tag tag-green mb-16">Modelo de Negócio</span>
+  <h2>10 modelos de receita. <span class="highlight-green">Receita diversificada.</span></h2>
+  <div class="divider"></div>
+
+  <div class="grid-2 mt-24">
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th>Plataforma</th>
+            <th>Modelo</th>
+            <th>Ticket Médio</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="color: var(--text-primary); font-weight: 500;">Portal do Advogado</td>
+            <td><span class="tag tag-blue" style="font-size: 0.65rem;">Assinatura</span></td>
+            <td>R$97-497/mês</td>
+          </tr>
+          <tr>
+            <td style="color: var(--text-primary); font-weight: 500;">Advogando.AI</td>
+            <td><span class="tag tag-purple" style="font-size: 0.65rem;">Créditos</span></td>
+            <td>R$50-500/uso</td>
+          </tr>
+          <tr>
+            <td style="color: var(--text-primary); font-weight: 500;">IncorporaTech</td>
+            <td><span class="tag tag-blue" style="font-size: 0.65rem;">SaaS</span></td>
+            <td>R$1.497-2.997/mês</td>
+          </tr>
+          <tr>
+            <td style="color: var(--text-primary); font-weight: 500;">Portal do Dentista</td>
+            <td><span class="tag tag-blue" style="font-size: 0.65rem;">Assinatura</span></td>
+            <td>R$197-997/mês</td>
+          </tr>
+          <tr>
+            <td style="color: var(--text-primary); font-weight: 500;">DealFlowBR</td>
+            <td><span class="tag tag-orange" style="font-size: 0.65rem;">Por Relatório</span></td>
+            <td>R$997-4.997</td>
+          </tr>
+          <tr>
+            <td style="color: var(--text-primary); font-weight: 500;">ConstrutechBR</td>
+            <td><span class="tag tag-blue" style="font-size: 0.65rem;">SaaS</span></td>
+            <td>R$2.500-8.000/mês</td>
+          </tr>
+          <tr>
+            <td style="color: var(--text-primary); font-weight: 500;">E-Arbitragem.AI</td>
+            <td><span class="tag tag-teal" style="font-size: 0.65rem;">Por Processo</span></td>
+            <td>R$500-5.000</td>
+          </tr>
+          <tr>
+            <td style="color: var(--text-primary); font-weight: 500;">Minuta.Tech</td>
+            <td><span class="tag tag-purple" style="font-size: 0.65rem;">Créditos</span></td>
+            <td>R$49-699/uso</td>
+          </tr>
+          <tr>
+            <td style="color: var(--text-primary); font-weight: 500;">O Melhor da IA</td>
+            <td><span class="tag tag-blue" style="font-size: 0.65rem;">Assinatura</span></td>
+            <td>R$29-97/mês</td>
+          </tr>
+          <tr>
+            <td style="color: var(--text-primary); font-weight: 500;">Gestão ImobTechBR</td>
+            <td><span class="tag tag-green" style="font-size: 0.65rem;">% Receita</span></td>
+            <td>8-12% sobre AUM</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div>
+      <div class="card" style="background: rgba(34,197,94,0.05); border-color: rgba(34,197,94,0.2); margin-bottom: 20px;">
+        <h3 style="color: var(--accent-green); font-size: 1.1rem;">Estratégia de Lançamento em Ondas</h3>
+        <div class="mt-16">
+          <div class="mb-16">
+            <div class="flex-between text-sm">
+              <span class="font-medium">Wave 1 (30 dias)</span>
+              <span class="opacity-60">Portal Advogado, Advogando.AI, Moneyp</span>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" style="width: 100%;"></div></div>
+          </div>
+          <div class="mb-16">
+            <div class="flex-between text-sm">
+              <span class="font-medium">Wave 2 (60-90 dias)</span>
+              <span class="opacity-60">Portal Dentista, IncorporaTech, DealFlowBR</span>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" style="width: 65%;"></div></div>
+          </div>
+          <div>
+            <div class="flex-between text-sm">
+              <span class="font-medium">Wave 3 (90-120 dias)</span>
+              <span class="opacity-60">LegalSuite, PropTechBR, WineTechs</span>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" style="width: 30%;"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 style="font-size: 1.1rem;">Psicologia de Preço</h3>
+        <ul class="check-list mt-16">
+          <li>Preços terminados em 7 (R$97, R$197, R$497)</li>
+          <li>Ancoragem: plano mais caro sempre visível primeiro</li>
+          <li>Decoy effect: 3 planos, meio = melhor custo-benefício</li>
+          <li>Desconto anual: "2 meses grátis"</li>
+          <li>Garantia incondicional de 7 dias</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <span class="slide-logo">BEANSTECH</span>
+  <span class="slide-number">05</span>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 6: TECNOLOGIA -->
+<!-- ============================================================ -->
+<div class="slide">
+  <span class="tag tag-blue mb-16">Tecnologia</span>
+  <h2>Stack de <span class="gradient-text">classe mundial</span></h2>
+  <div class="divider"></div>
+
+  <div class="grid-2 mt-24">
+    <div>
+      <h3 style="font-size: 1.1rem; margin-bottom: 20px;">Aplicações (7 serviços)</h3>
+      <div class="card-sm mb-16">
+        <div style="display: grid; grid-template-columns: auto 1fr auto; gap: 12px; align-items: center; font-size: 0.85rem;">
+          <span style="color: var(--accent-blue); font-weight: 700;">WEB</span>
+          <span style="color: var(--text-secondary);">Next.js 15 — 23 landing pages, multi-domínio</span>
+          <span class="tag tag-blue" style="font-size: 0.6rem;">SSR/ISR</span>
+        </div>
+      </div>
+      <div class="card-sm mb-16">
+        <div style="display: grid; grid-template-columns: auto 1fr auto; gap: 12px; align-items: center; font-size: 0.85rem;">
+          <span style="color: var(--accent-purple); font-weight: 700;">DASHBOARD</span>
+          <span style="color: var(--text-secondary);">Next.js 15 — SaaS multi-tenant, 14 dashboards</span>
+          <span class="tag tag-purple" style="font-size: 0.6rem;">RSC</span>
+        </div>
+      </div>
+      <div class="card-sm mb-16">
+        <div style="display: grid; grid-template-columns: auto 1fr auto; gap: 12px; align-items: center; font-size: 0.85rem;">
+          <span style="color: var(--accent-green); font-weight: 700;">API</span>
+          <span style="color: var(--text-secondary);">Fastify 5 — REST + Swagger, JWT, Redis cache</span>
+          <span class="tag tag-green" style="font-size: 0.6rem;">REST</span>
+        </div>
+      </div>
+      <div class="card-sm mb-16">
+        <div style="display: grid; grid-template-columns: auto 1fr auto; gap: 12px; align-items: center; font-size: 0.85rem;">
+          <span style="color: var(--accent-orange); font-weight: 700;">CMS</span>
+          <span style="color: var(--text-secondary);">Payload 3.0 — Headless, 12 collections, blocos</span>
+          <span class="tag tag-orange" style="font-size: 0.6rem;">HEADLESS</span>
+        </div>
+      </div>
+      <div class="card-sm mb-16">
+        <div style="display: grid; grid-template-columns: auto 1fr auto; gap: 12px; align-items: center; font-size: 0.85rem;">
+          <span style="color: var(--accent-teal); font-weight: 700;">WORKERS</span>
+          <span style="color: var(--text-secondary);">Jobs background — email, analytics, churn</span>
+          <span class="tag tag-teal" style="font-size: 0.6rem;">24/7</span>
+        </div>
+      </div>
+      <div class="card-sm">
+        <div style="display: grid; grid-template-columns: auto 1fr auto; gap: 12px; align-items: center; font-size: 0.85rem;">
+          <span style="color: var(--accent-pink); font-weight: 700;">MOBILE</span>
+          <span style="color: var(--text-secondary);">React Native + Expo — 2 apps (CRM, Sommelier)</span>
+          <span class="tag tag-pink" style="font-size: 0.6rem;">iOS/Android</span>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <h3 style="font-size: 1.1rem; margin-bottom: 20px;">Infraestrutura GCP</h3>
+      <div class="card" style="background: rgba(14,165,233,0.04);">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; font-size: 0.85rem;">
+          <div>
+            <div class="font-bold mb-16" style="color: var(--accent-blue);">Computação</div>
+            <div style="color: var(--text-secondary); line-height: 2;">
+              Cloud Run (7 serviços)<br>
+              Cloud Build<br>
+              Artifact Registry
+            </div>
+          </div>
+          <div>
+            <div class="font-bold mb-16" style="color: var(--accent-purple);">Dados</div>
+            <div style="color: var(--text-secondary); line-height: 2;">
+              Cloud SQL (PostgreSQL 16)<br>
+              Memorystore (Redis 7 HA)<br>
+              Cloud Storage + CDN
+            </div>
+          </div>
+          <div>
+            <div class="font-bold mb-16" style="color: var(--accent-green);">IA</div>
+            <div style="color: var(--text-secondary); line-height: 2;">
+              Vertex AI (embeddings)<br>
+              Gemini 3.1 Pro/Flash<br>
+              pgvector (RAG)
+            </div>
+          </div>
+          <div>
+            <div class="font-bold mb-16" style="color: var(--accent-orange);">Segurança</div>
+            <div style="color: var(--text-secondary); line-height: 2;">
+              Secret Manager<br>
+              VPC privada<br>
+              SSL gerenciado (23+ domínios)
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card mt-16">
+        <h3 style="font-size: 1rem; margin-bottom: 12px;">Banco de Dados Multi-Schema</h3>
+        <p class="text-sm" style="color: var(--text-secondary);">12 schemas Prisma independentes em uma única instância PostgreSQL 16, com Row-Level Security para isolamento multi-tenant. Réplica de leitura para analytics.</p>
+        <div class="mt-16" style="display: flex; flex-wrap: wrap; gap: 6px;">
+          <span class="tag tag-purple" style="font-size: 0.6rem;">core</span>
+          <span class="tag tag-purple" style="font-size: 0.6rem;">legaltech</span>
+          <span class="tag tag-green" style="font-size: 0.6rem;">proptech</span>
+          <span class="tag tag-green" style="font-size: 0.6rem;">fintech</span>
+          <span class="tag tag-pink" style="font-size: 0.6rem;">winetech</span>
+          <span class="tag tag-blue" style="font-size: 0.6rem;">arbitration</span>
+          <span class="tag tag-green" style="font-size: 0.6rem;">crm</span>
+          <span class="tag tag-purple" style="font-size: 0.6rem;">portal_adv</span>
+          <span class="tag tag-orange" style="font-size: 0.6rem;">tokenization</span>
+          <span class="tag tag-teal" style="font-size: 0.6rem;">legislation</span>
+          <span class="tag tag-teal" style="font-size: 0.6rem;">jurisprudence</span>
+          <span class="tag tag-blue" style="font-size: 0.6rem;">businesstech</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <span class="slide-logo">BEANSTECH</span>
+  <span class="slide-number">06</span>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 7: IA MULTI-MODELO -->
+<!-- ============================================================ -->
+<div class="slide">
+  <span class="tag tag-teal mb-16">Inteligência Artificial</span>
+  <h2>Arquitetura <span class="highlight">multi-modelo</span>: o melhor de cada IA</h2>
+  <div class="divider"></div>
+
+  <div class="grid-2 mt-24">
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th>Caso de Uso</th>
+            <th>Modelo</th>
+            <th>Plataforma</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="color: var(--text-primary);">Documentos jurídicos</td>
+            <td><span class="font-bold" style="color: #a78bfa;">Claude Opus 4.6</span></td>
+            <td style="font-size: 0.8rem;">Advogando.AI, Minuta.Tech</td>
+          </tr>
+          <tr>
+            <td style="color: var(--text-primary);">Imagens odontológicas</td>
+            <td><span class="font-bold" style="color: #38bdf8;">Gemini 3 Pro Vision</span></td>
+            <td style="font-size: 0.8rem;">Portal do Dentista</td>
+          </tr>
+          <tr>
+            <td style="color: var(--text-primary);">Pesquisa jurídica (RAG)</td>
+            <td><span class="font-bold" style="color: #38bdf8;">Gemini 3.1 Pro</span></td>
+            <td style="font-size: 0.8rem;">LegalSuite, Portal Advogado</td>
+          </tr>
+          <tr>
+            <td style="color: var(--text-primary);">Segurança construção</td>
+            <td><span class="font-bold" style="color: #38bdf8;">Gemini 3 Pro Vision</span></td>
+            <td style="font-size: 0.8rem;">ConstrutechBR</td>
+          </tr>
+          <tr>
+            <td style="color: var(--text-primary);">Embeddings (RAG)</td>
+            <td><span class="font-bold" style="color: #38bdf8;">gemini-embedding-001</span></td>
+            <td style="font-size: 0.8rem;">Busca Legal</td>
+          </tr>
+          <tr>
+            <td style="color: var(--text-primary);">Análise financeira</td>
+            <td><span class="font-bold" style="color: #4ade80;">Claude Sonnet 4.6</span></td>
+            <td style="font-size: 0.8rem;">DealFlowBR, Moneyp</td>
+          </tr>
+          <tr>
+            <td style="color: var(--text-primary);">Recomendação vinhos</td>
+            <td><span class="font-bold" style="color: #38bdf8;">Gemini 3 Flash</span></td>
+            <td style="font-size: 0.8rem;">Seu Sommelier Digital</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div>
+      <div class="card" style="border-left: 4px solid var(--accent-teal);">
+        <h3 style="font-size: 1.1rem;">Pipeline RAG Jurídico</h3>
+        <p class="text-sm mt-8" style="color: var(--text-secondary);">Indexação de milhões de documentos legais brasileiros (STF, STJ, legislação, DOU) em embeddings pgvector via Vertex AI, possibilitando busca semântica em tempo real.</p>
+        <div class="mt-16" style="font-size: 0.8rem; color: var(--text-secondary); font-family: monospace; background: rgba(0,0,0,0.3); padding: 16px; border-radius: 8px; line-height: 1.8;">
+          Documento → Vertex AI Embeddings<br>
+          → pgvector (PostgreSQL)<br>
+          → Busca por Similaridade<br>
+          → Contexto → Gemini 3.1 Pro<br>
+          → Resposta Fundamentada
+        </div>
+      </div>
+
+      <div class="card mt-16" style="background: rgba(14,165,233,0.05);">
+        <h3 style="font-size: 1.1rem; color: var(--accent-blue);">Google é nosso parceiro #1</h3>
+        <ul class="check-list mt-8" style="font-size: 0.85rem;">
+          <li>100% infraestrutura no GCP</li>
+          <li>Vertex AI para embeddings em produção</li>
+          <li>Gemini como modelo primário de visão</li>
+          <li>Cloud Run como plataforma de computação</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <span class="slide-logo">BEANSTECH</span>
+  <span class="slide-number">07</span>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 8: MERCADO & CONCORRÊNCIA -->
+<!-- ============================================================ -->
+<div class="slide">
+  <span class="tag tag-orange mb-16">Mercado</span>
+  <h2>Mercados gigantes. <span class="highlight-orange">Concorrência fraca.</span></h2>
+  <div class="divider"></div>
+
+  <div class="grid-2 mt-24">
+    <div>
+      <div class="card mb-16">
+        <div class="flex-between">
+          <div>
+            <span class="tag tag-purple" style="font-size: 0.65rem;">LegalTech</span>
+            <div style="font-size: 2.2rem; font-weight: 900; color: var(--accent-purple); margin-top: 8px;">R$5B+</div>
+            <div class="text-sm" style="color: var(--text-secondary);">TAM Brasil</div>
+          </div>
+          <div class="text-right">
+            <div class="text-sm" style="color: var(--text-secondary);">1,4M advogados</div>
+            <div class="text-sm" style="color: var(--text-secondary);">Concorrentes: software legado</div>
+            <div class="text-sm font-bold" style="color: var(--accent-green);">IA = diferencial absoluto</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card mb-16">
+        <div class="flex-between">
+          <div>
+            <span class="tag tag-green" style="font-size: 0.65rem;">PropTech</span>
+            <div style="font-size: 2.2rem; font-weight: 900; color: var(--accent-green); margin-top: 8px;">R$15B+</div>
+            <div class="text-sm" style="color: var(--text-secondary);">TAM Brasil</div>
+          </div>
+          <div class="text-right">
+            <div class="text-sm" style="color: var(--text-secondary);">R$800B/ano transacionados</div>
+            <div class="text-sm" style="color: var(--text-secondary);">Ferramentas fragmentadas</div>
+            <div class="text-sm font-bold" style="color: var(--accent-green);">Ecossistema único (8 apps)</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="flex-between">
+          <div>
+            <span class="tag tag-blue" style="font-size: 0.65rem;">DentalTech</span>
+            <div style="font-size: 2.2rem; font-weight: 900; color: var(--accent-blue); margin-top: 8px;">R$2B+</div>
+            <div class="text-sm" style="color: var(--text-secondary);">TAM Brasil</div>
+          </div>
+          <div class="text-right">
+            <div class="text-sm" style="color: var(--text-secondary);">350 mil dentistas</div>
+            <div class="text-sm" style="color: var(--text-secondary);">Overjet: US$100M+ (EUA)</div>
+            <div class="text-sm font-bold" style="color: var(--accent-orange);">ZERO concorrentes IA no BR</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="card" style="height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
+        <div>
+          <h3 style="font-size: 1.1rem;">Por que vencemos</h3>
+          <div class="mt-24" style="font-size: 0.9rem;">
+            <div class="mb-24">
+              <div class="flex-center mb-8">
+                <span style="font-size: 1.5rem;">&#127919;</span>
+                <span class="font-bold">First-mover em IA vertical brasileira</span>
+              </div>
+              <p style="color: var(--text-secondary); margin-left: 42px; font-size: 0.85rem;">Enquanto concorrentes adicionam IA como feature, nós construímos com IA no core desde o dia zero.</p>
+            </div>
+
+            <div class="mb-24">
+              <div class="flex-center mb-8">
+                <span style="font-size: 1.5rem;">&#9889;</span>
+                <span class="font-bold">Velocidade de lançamento 10x</span>
+              </div>
+              <p style="color: var(--text-secondary); margin-left: 42px; font-size: 0.85rem;">Monorepo compartilhado = nova vertical em semanas, não meses. Pacotes de auth, pagamento, analytics já prontos.</p>
+            </div>
+
+            <div class="mb-24">
+              <div class="flex-center mb-8">
+                <span style="font-size: 1.5rem;">&#128737;&#65039;</span>
+                <span class="font-bold">Moat: dados cross-vertical</span>
+              </div>
+              <p style="color: var(--text-secondary); margin-left: 42px; font-size: 0.85rem;">Um advogado no Portal do Advogado que também usa Advogando.AI e E-Arbitragem.AI = dados integrados que ninguém tem.</p>
+            </div>
+
+            <div>
+              <div class="flex-center mb-8">
+                <span style="font-size: 1.5rem;">&#127463;&#127479;</span>
+                <span class="font-bold">Brasil-primeiro</span>
+              </div>
+              <p style="color: var(--text-secondary); margin-left: 42px; font-size: 0.85rem;">Língua portuguesa nativa, LGPD compliance, meios de pagamento locais (Pix, boleto), contexto legal brasileiro.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <span class="slide-logo">BEANSTECH</span>
+  <span class="slide-number">08</span>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 9: MÉTRICAS ALVO -->
+<!-- ============================================================ -->
+<div class="slide">
+  <span class="tag tag-green mb-16">Métricas-Alvo</span>
+  <h2>Norte: <span class="highlight-green">produto excelente + distribuição inteligente</span></h2>
+  <div class="divider"></div>
+
+  <p class="subtitle mb-32">Filosofia central: "Dinheiro bom = receita recorrente de clientes que amam o produto e indicam naturalmente."</p>
+
+  <div class="grid-4 mt-16">
+    <div class="stat-card">
+      <div class="stat-number" style="color: var(--accent-green);">&gt;3x</div>
+      <div class="stat-label">LTV / CAC</div>
+      <div class="progress-bar mt-8"><div class="progress-fill" style="width: 75%; background: var(--gradient-green);"></div></div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number" style="color: var(--accent-blue);">&gt;50</div>
+      <div class="stat-label">NPS Score</div>
+      <div class="progress-bar mt-8"><div class="progress-fill" style="width: 60%;"></div></div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number" style="color: var(--accent-purple);">&lt;5%</div>
+      <div class="stat-label">Churn Mensal</div>
+      <div class="progress-bar mt-8"><div class="progress-fill" style="width: 85%; background: linear-gradient(135deg, #8b5cf6, #a855f7);"></div></div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number" style="color: var(--accent-orange);">&gt;30%</div>
+      <div class="stat-label">Receita de Indicação</div>
+      <div class="progress-bar mt-8"><div class="progress-fill" style="width: 45%; background: var(--gradient-fire);"></div></div>
+    </div>
+  </div>
+
+  <div class="grid-2 mt-32">
+    <div class="card">
+      <h3 style="font-size: 1.1rem;">Funil de Conversão</h3>
+      <div class="mt-16" style="font-size: 0.85rem;">
+        <div class="mb-16 flex-between">
+          <span style="color: var(--text-primary);">Topo (SEO, LinkedIn, YouTube)</span>
+          <span style="color: var(--text-muted);">100%</span>
+        </div>
+        <div class="progress-bar mb-16"><div class="progress-fill" style="width: 100%;"></div></div>
+
+        <div class="mb-16 flex-between">
+          <span style="color: var(--text-primary);">Meio (Lead magnets, webinars)</span>
+          <span style="color: var(--text-muted);">30%</span>
+        </div>
+        <div class="progress-bar mb-16"><div class="progress-fill" style="width: 30%;"></div></div>
+
+        <div class="mb-16 flex-between">
+          <span style="color: var(--text-primary);">Fundo (Trial, onboarding)</span>
+          <span style="color: var(--text-muted);">10%</span>
+        </div>
+        <div class="progress-bar mb-16"><div class="progress-fill" style="width: 10%;"></div></div>
+
+        <div class="mb-16 flex-between">
+          <span style="color: var(--text-primary);">Cliente pagante</span>
+          <span style="color: var(--text-muted);">3-5%</span>
+        </div>
+        <div class="progress-bar mb-16"><div class="progress-fill" style="width: 4%; background: var(--gradient-green);"></div></div>
+
+        <div class="flex-between">
+          <span style="color: var(--text-primary);">Promotor (indica)</span>
+          <span style="color: var(--text-muted);">1-2%</span>
+        </div>
+        <div class="progress-bar"><div class="progress-fill" style="width: 2%; background: var(--gradient-fire);"></div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3 style="font-size: 1.1rem;">Engine de Crescimento</h3>
+      <div class="mt-16" style="font-size: 0.85rem; color: var(--text-secondary); line-height: 2.2;">
+        <div class="flex-center">
+          <span style="color: var(--accent-blue); font-weight: 700; width: 100px;">Aquisição</span>
+          <span>SEO + conteúdo jurídico/imob + LinkedIn orgânico</span>
+        </div>
+        <div class="flex-center">
+          <span style="color: var(--accent-purple); font-weight: 700; width: 100px;">Ativação</span>
+          <span>Trial 7 dias + onboarding wizard guiado</span>
+        </div>
+        <div class="flex-center">
+          <span style="color: var(--accent-green); font-weight: 700; width: 100px;">Retenção</span>
+          <span>Produto indispensável + check-ins automatizados</span>
+        </div>
+        <div class="flex-center">
+          <span style="color: var(--accent-orange); font-weight: 700; width: 100px;">Receita</span>
+          <span>Upsell automático + expansão de créditos</span>
+        </div>
+        <div class="flex-center">
+          <span style="color: var(--accent-pink); font-weight: 700; width: 100px;">Indicação</span>
+          <span>Programa de afiliados + embaixadores</span>
+        </div>
+      </div>
+
+      <div class="mt-24 card-sm" style="background: rgba(34,197,94,0.08); border-color: rgba(34,197,94,0.2);">
+        <p class="text-sm" style="color: var(--text-secondary);"><strong style="color: var(--accent-green);">Cross-sell natural:</strong> Um advogado que usa o Portal do Advogado naturalmente descobre Advogando.AI, E-Arbitragem.AI e LegalSuite.</p>
+      </div>
+    </div>
+  </div>
+
+  <span class="slide-logo">BEANSTECH</span>
+  <span class="slide-number">09</span>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 10: SEGURANÇA & CI/CD -->
+<!-- ============================================================ -->
+<div class="slide">
+  <span class="tag tag-purple mb-16">Engenharia</span>
+  <h2>CI/CD e Segurança de <span class="highlight-purple">nível enterprise</span></h2>
+  <div class="divider"></div>
+
+  <div class="grid-2 mt-24">
+    <div>
+      <h3 style="font-size: 1.1rem; margin-bottom: 20px;">Pipeline GitLab CI (6 estágios)</h3>
+      <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+        <div class="card-sm" style="text-align: center; flex: 1; min-width: 100px;">
+          <div style="font-size: 1.2rem;">&#128230;</div>
+          <div class="text-xs font-bold mt-8">SETUP</div>
+          <div class="text-xs opacity-60">pnpm + Prisma</div>
+        </div>
+        <div class="pipeline-arrow">&#8594;</div>
+        <div class="card-sm" style="text-align: center; flex: 1; min-width: 100px;">
+          <div style="font-size: 1.2rem;">&#9989;</div>
+          <div class="text-xs font-bold mt-8">VALIDAR</div>
+          <div class="text-xs opacity-60">Vars GCP</div>
+        </div>
+        <div class="pipeline-arrow">&#8594;</div>
+        <div class="card-sm" style="text-align: center; flex: 1; min-width: 100px;">
+          <div style="font-size: 1.2rem;">&#128274;</div>
+          <div class="text-xs font-bold mt-8">SEGURANÇA</div>
+          <div class="text-xs opacity-60">SAST, Trivy</div>
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 12px;">
+        <div class="card-sm" style="text-align: center; flex: 1; min-width: 100px;">
+          <div style="font-size: 1.2rem;">&#129514;</div>
+          <div class="text-xs font-bold mt-8">TESTES</div>
+          <div class="text-xs opacity-60">Lint, Type, Unit</div>
+        </div>
+        <div class="pipeline-arrow">&#8594;</div>
+        <div class="card-sm" style="text-align: center; flex: 1; min-width: 100px;">
+          <div style="font-size: 1.2rem;">&#128679;</div>
+          <div class="text-xs font-bold mt-8">BUILD</div>
+          <div class="text-xs opacity-60">Docker → gcr.io</div>
+        </div>
+        <div class="pipeline-arrow">&#8594;</div>
+        <div class="card-sm" style="text-align: center; flex: 1; min-width: 100px;">
+          <div style="font-size: 1.2rem;">&#128640;</div>
+          <div class="text-xs font-bold mt-8">DEPLOY</div>
+          <div class="text-xs opacity-60">Cloud Run</div>
+        </div>
+      </div>
+
+      <div class="card mt-24">
+        <h3 style="font-size: 1rem;">6 apps em paralelo</h3>
+        <p class="text-sm mt-8" style="color: var(--text-secondary);">Web, Dashboard, API, CMS, Workers, Admin — cada um com Docker build independente, deploy manual pós-aprovação. Notificações Slack em caso de sucesso ou falha.</p>
+      </div>
+    </div>
+
+    <div>
+      <h3 style="font-size: 1.1rem; margin-bottom: 20px;">Camadas de Segurança</h3>
+      <div class="card-sm mb-12 flex-center">
+        <span style="font-size: 1.2rem;">&#128272;</span>
+        <div>
+          <div class="font-bold text-sm">Autenticação & RBAC</div>
+          <div class="text-xs" style="color: var(--text-secondary);">NextAuth.js v5 — ADMIN, MANAGER, USER, VIEWER por organização</div>
+        </div>
+      </div>
+      <div class="card-sm mb-12 flex-center">
+        <span style="font-size: 1.2rem;">&#128737;&#65039;</span>
+        <div>
+          <div class="font-bold text-sm">Row-Level Security</div>
+          <div class="text-xs" style="color: var(--text-secondary);">Isolamento multi-tenant no nível do PostgreSQL — cada org vê só seus dados</div>
+        </div>
+      </div>
+      <div class="card-sm mb-12 flex-center">
+        <span style="font-size: 1.2rem;">&#128273;</span>
+        <div>
+          <div class="font-bold text-sm">Secret Manager</div>
+          <div class="text-xs" style="color: var(--text-secondary);">Credenciais nunca em código — GCP Secret Manager com acesso por service account</div>
+        </div>
+      </div>
+      <div class="card-sm mb-12 flex-center">
+        <span style="font-size: 1.2rem;">&#127760;</span>
+        <div>
+          <div class="font-bold text-sm">VPC Privada</div>
+          <div class="text-xs" style="color: var(--text-secondary);">Banco e Redis sem IP público — acesso apenas via VPC Access Connector</div>
+        </div>
+      </div>
+      <div class="card-sm mb-12 flex-center">
+        <span style="font-size: 1.2rem;">&#128270;</span>
+        <div>
+          <div class="font-bold text-sm">Varredura Automatizada</div>
+          <div class="text-xs" style="color: var(--text-secondary);">SAST, Secret Detection, Dependency Scanning, Trivy (bloqueia CRITICAL)</div>
+        </div>
+      </div>
+      <div class="card-sm flex-center">
+        <span style="font-size: 1.2rem;">&#128220;</span>
+        <div>
+          <div class="font-bold text-sm">Conformidade LGPD</div>
+          <div class="text-xs" style="color: var(--text-secondary);">Políticas de privacidade, consentimento de cookies, direitos do titular em todas as plataformas</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <span class="slide-logo">BEANSTECH</span>
+  <span class="slide-number">10</span>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 11: CUSTOS & ESCALABILIDADE -->
+<!-- ============================================================ -->
+<div class="slide">
+  <span class="tag tag-teal mb-16">Escalabilidade</span>
+  <h2>Arquitetura serverless: <span class="highlight">custo escala com uso real</span></h2>
+  <div class="divider"></div>
+
+  <div class="grid-2 mt-24">
+    <div>
+      <h3 style="font-size: 1.1rem; margin-bottom: 20px;">Custo Atual (Fase Inicial)</h3>
+      <table>
+        <thead>
+          <tr><th>Serviço GCP</th><th style="text-align: right;">Custo/mês</th></tr>
+        </thead>
+        <tbody>
+          <tr><td style="color: var(--text-primary);">Cloud Run (7 serviços)</td><td class="text-right">~US$150-300</td></tr>
+          <tr><td style="color: var(--text-primary);">Cloud SQL + Réplica</td><td class="text-right">~US$300-430</td></tr>
+          <tr><td style="color: var(--text-primary);">Memorystore (Redis 7 HA)</td><td class="text-right">~US$80-120</td></tr>
+          <tr><td style="color: var(--text-primary);">Storage + CDN</td><td class="text-right">~US$25-60</td></tr>
+          <tr><td style="color: var(--text-primary);">Build + Registry + Secrets</td><td class="text-right">~US$15-30</td></tr>
+          <tr><td style="color: var(--text-primary);">LB + VPC Connector</td><td class="text-right">~US$45-80</td></tr>
+          <tr><td style="color: var(--text-primary);">Vertex AI</td><td class="text-right">~US$50-200</td></tr>
+          <tr style="border-top: 2px solid var(--border);">
+            <td style="color: var(--accent-blue); font-weight: 700;">TOTAL</td>
+            <td class="text-right" style="color: var(--accent-blue); font-weight: 700;">~US$650-1.200</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="text-xs mt-8 opacity-60">Custo por plataforma: ~US$28-52/mês</p>
+    </div>
+
+    <div>
+      <h3 style="font-size: 1.1rem; margin-bottom: 20px;">Projeção de Escala</h3>
+      <div class="card-sm mb-16" style="border-left: 4px solid var(--text-muted);">
+        <div class="flex-between">
+          <div>
+            <div class="text-xs opacity-60">MVP (atual)</div>
+            <div class="font-bold">&lt;100 usuários</div>
+          </div>
+          <div class="text-right">
+            <div style="font-size: 1.4rem; font-weight: 800;">~US$800</div>
+            <div class="text-xs opacity-60">/mês</div>
+          </div>
+        </div>
+      </div>
+      <div class="card-sm mb-16" style="border-left: 4px solid var(--accent-blue);">
+        <div class="flex-between">
+          <div>
+            <div class="text-xs opacity-60">Tração inicial</div>
+            <div class="font-bold">500 usuários</div>
+          </div>
+          <div class="text-right">
+            <div style="font-size: 1.4rem; font-weight: 800; color: var(--accent-blue);">~US$2.000</div>
+            <div class="text-xs opacity-60">/mês</div>
+          </div>
+        </div>
+      </div>
+      <div class="card-sm mb-16" style="border-left: 4px solid var(--accent-green);">
+        <div class="flex-between">
+          <div>
+            <div class="text-xs opacity-60">Product-Market Fit</div>
+            <div class="font-bold">5.000 usuários</div>
+          </div>
+          <div class="text-right">
+            <div style="font-size: 1.4rem; font-weight: 800; color: var(--accent-green);">~US$5.000</div>
+            <div class="text-xs opacity-60">/mês</div>
+          </div>
+        </div>
+      </div>
+      <div class="card-sm" style="border-left: 4px solid var(--accent-purple);">
+        <div class="flex-between">
+          <div>
+            <div class="text-xs opacity-60">Escala</div>
+            <div class="font-bold">50.000 usuários</div>
+          </div>
+          <div class="text-right">
+            <div style="font-size: 1.4rem; font-weight: 800; color: var(--accent-purple);">~US$15.000</div>
+            <div class="text-xs opacity-60">/mês</div>
+          </div>
+        </div>
+      </div>
+      <div class="card mt-16" style="background: rgba(34,197,94,0.05); border-color: rgba(34,197,94,0.2);">
+        <p class="text-sm" style="color: var(--text-secondary);"><strong style="color: var(--accent-green);">Cloud Run serverless:</strong> zero desperdício. Paga apenas pelo que usa. Auto-scaling de 0 a 20 instâncias por serviço.</p>
+      </div>
+    </div>
+  </div>
+
+  <span class="slide-logo">BEANSTECH</span>
+  <span class="slide-number">11</span>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 12: O ASK -->
+<!-- ============================================================ -->
+<div class="slide" style="justify-content: center; align-items: center; text-align: center;">
+  <span class="tag tag-blue mb-24">O Que Buscamos</span>
+
+  <h1 style="font-size: 2.6rem; max-width: 800px;">
+    Parceiros estratégicos para<br>
+    <span class="gradient-text">acelerar 23 plataformas</span>
+  </h1>
+
+  <div class="divider" style="margin: 24px auto;"></div>
+
+  <div class="grid-3 mt-32" style="max-width: 900px; margin: 32px auto 0;">
+    <div class="card" style="text-align: center;">
+      <div style="font-size: 2.5rem; margin-bottom: 12px;">&#9729;&#65039;</div>
+      <h3 style="font-size: 1rem;">Google Cloud</h3>
+      <p class="text-sm mt-8" style="color: var(--text-secondary);">Créditos GCP, Vertex AI Agent Builder, parceria técnica e go-to-market</p>
+    </div>
+    <div class="card" style="text-align: center;">
+      <div style="font-size: 2.5rem; margin-bottom: 12px;">&#128176;</div>
+      <h3 style="font-size: 1rem;">Investimento</h3>
+      <p class="text-sm mt-8" style="color: var(--text-secondary);">Rodada Seed/Pre-Series A para acelerar go-to-market das 3 primeiras waves</p>
+    </div>
+    <div class="card" style="text-align: center;">
+      <div style="font-size: 2.5rem; margin-bottom: 12px;">&#129309;</div>
+      <h3 style="font-size: 1rem;">Parceiros de Distribuição</h3>
+      <p class="text-sm mt-8" style="color: var(--text-secondary);">OABs, CROCs, CRECI, associações profissionais — canais diretos para nosso público</p>
+    </div>
+  </div>
+
+  <div class="mt-48" style="max-width: 700px;">
+    <div class="card" style="background: linear-gradient(135deg, rgba(14,165,233,0.1), rgba(139,92,246,0.1)); border-color: rgba(14,165,233,0.3); text-align: center;">
+      <div style="font-size: 4rem; font-weight: 900; margin-bottom: 8px;">
+        <span class="gradient-text">Beans</span><span>Tech</span>
+      </div>
+      <p style="color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 16px;">Construindo o Futuro com IA e Cloud</p>
+      <div style="display: flex; justify-content: center; gap: 32px; font-size: 0.85rem; color: var(--text-muted);">
+        <span>beanstech.com.br</span>
+        <span>contato@beanstech.com.br</span>
+      </div>
+    </div>
+  </div>
+
+  <span class="slide-logo">BEANSTECH</span>
+  <span class="slide-number">12</span>
+</div>
+
+</body>
+</html>
